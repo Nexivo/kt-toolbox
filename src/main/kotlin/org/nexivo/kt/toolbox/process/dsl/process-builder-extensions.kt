@@ -1,4 +1,4 @@
-package org.nexivo.kt.utils.common.process.dsl
+package org.nexivo.kt.toolbox.process.dsl
 
 import org.nexivo.kt.specifics.flow.ifNotNull
 import org.nexivo.kt.specifics.flow.whenNotNull
