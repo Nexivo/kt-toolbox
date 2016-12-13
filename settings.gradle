@@ -1,1 +1,4 @@
 rootProject.name = 'kt-toolbox'
+
+include ':kt-specifics'
+project(':kt-specifics').projectDir = new File(settingsDir, '..\\kt-specifics')

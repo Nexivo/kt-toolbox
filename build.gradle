@@ -43,6 +43,7 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile project(':kt-specifics')
 
     testCompile "com.winterbe:expekt:$expekt_version"
     testCompile "org.jmockit:jmockit:$jmockit_version"
