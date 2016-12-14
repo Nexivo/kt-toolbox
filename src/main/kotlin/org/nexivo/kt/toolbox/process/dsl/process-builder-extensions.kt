@@ -1,7 +1,7 @@
 package org.nexivo.kt.toolbox.process.dsl
 
-import org.nexivo.kt.specifics.flow.ifNotNull
-import org.nexivo.kt.specifics.flow.whenNotNull
+import org.nexivo.kt.specifics.flow.ifSet
+import org.nexivo.kt.specifics.flow.ifValid
 import org.nexivo.kt.toolbox.io.dsl.capture
 import java.io.File
 
@@ -14,7 +14,7 @@ fun Array<String>.start(
         output: String?,
         errors: String?,
         vararg variables: Pair<String, String>
-    ): Process = this.start(input ifNotNull ::File, output ifNotNull ::File, errors ifNotNull ::File, *variables)
+    ): Process = this.start(input ifValid ::File, output ifValid ::File, errors ifValid ::File, *variables)
 
 fun Array<String>.start(
         input:  File?,
@@ -25,11 +25,11 @@ fun Array<String>.start(
 
     val process = ProcessBuilder(*this)
 
-    input  whenNotNull { process.redirectError(input) }
+    input ifSet { process.redirectError(input) }
 
-    output whenNotNull { process.redirectError(output) }
+    output ifSet { process.redirectError(output) }
 
-    errors whenNotNull { process.redirectError(errors) }
+    errors ifSet { process.redirectError(errors) }
 
     process.environment().putAll(variables)
 
@@ -48,7 +48,7 @@ fun Array<String>.startAndCapture(
         errors: String?,
         vararg variables: Pair<String, String>
 ): Pair<Int, String>
-    = this.startAndCapture(input ifNotNull ::File, output ifNotNull ::File, errors ifNotNull ::File, *variables)
+    = this.startAndCapture(input ifValid ::File, output ifValid ::File, errors ifValid ::File, *variables)
 
 fun Array<String>.startAndCapture(
         input:  File? = null,
